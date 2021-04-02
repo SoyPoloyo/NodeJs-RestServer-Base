@@ -4,13 +4,15 @@ node_modules
 
 /info.md
 
-/.env
+.env
 
 /ejemplos
 
-/models/farmaco.js
+models/farmaco.js
 
-/controllers/farmacos.js
+controllers/farmacos.js
+
+/routes/farmacos.js
 
 
 
