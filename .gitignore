@@ -1,2 +1,16 @@
+
+
 node_modules
+
 /info.md
+
+/.env
+
+/ejemplos
+
+/models/farmaco.js
+
+/controllers/farmacos.js
+
+
+
