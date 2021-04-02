@@ -1,6 +1,5 @@
 const { validationResult } = require('express-validator');
 
-
 //Esto se llamara en la ruta para devolver los datos que no vienen con mis requisitos previos
 // para que no lleguen al controlador
 const validarCampos = (req, res, next) => {
@@ -13,7 +12,7 @@ const validarCampos = (req, res, next) => {
     //quiere decir que si llega a este punto, sigue con el proximo middleware y si no hay, el controlador
     next();
 }
-
+ 
 module.exports = {
     validarCampos
 }

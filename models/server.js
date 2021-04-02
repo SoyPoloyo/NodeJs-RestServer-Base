@@ -2,7 +2,7 @@ express = require('express');
 const cors = require('cors');
 
 const { dbConnection } = require('../database/config');
-
+ 
 //clase para levantar el server
 class Server {
     //levantando el servidor

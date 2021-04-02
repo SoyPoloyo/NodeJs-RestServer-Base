@@ -10,7 +10,7 @@ const { usuariosGet, usuariosPut, usuariosPost, usuariosDelete } = require('../c
 const router = Router();
 
 //Si mandamos 3 o mas middlewares, significa que en el 2 espacio van los middlewares, si van varios, van entre []
-
+ 
 router.get('/', usuariosGet);
 
 router.put('/:id', [
