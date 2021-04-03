@@ -9,7 +9,7 @@ const nombreComercialGet = async (req, res = response) => {
     //ejp: localhost:puerto/api/usuarios?desde=5&limite=10
     //esto nos mostraria del usuario 5 en adelante y solo 10
 
-    let { desde = 0, limite = 5, nombre = '' } = req.query;
+    let { desde = 0, limite = 5, cual = '' } = req.query;
 
     isNaN(limite) ? limite = 5 : limite = (Number(limite));
     isNaN(desde) ? desde = 0 : desde = (Number(desde));
@@ -26,7 +26,7 @@ const nombreComercialGet = async (req, res = response) => {
             .skip(desde)
             .limit(limite), // limita los usuarios mostrados
 
-        NombreComercial.find({ nombre: nombre })
+        NombreComercial.find({ nombre: cual })
 
 
     ])
@@ -39,14 +39,14 @@ const nombreComercialGet = async (req, res = response) => {
 
     let respuesta = {}
 
-    respuesta = (nombre == '') ? respuesta = {
+    respuesta = (cual == '') ? respuesta = {
         Info: `nombres comerciales iran aqui`,
         "total actual en base de datos": total,
         nombres: nombres,
         nombreComercial: nombreComercial
     } :
         respuesta = {
-            Nota: `Todo sobre el ${nombre}`,
+            Nota: `Todo sobre el ${cual}`,
             Info: nombreComercial
         }
 

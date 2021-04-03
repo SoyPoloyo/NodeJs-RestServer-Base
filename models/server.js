@@ -12,8 +12,8 @@ class Server {
         //http de las rutas
         this.usuariosPath = '/api/usuarios';
         this.authPath = '/api/auth';
-        this.principioActivoPath = '/api/principio-activo';
-        this.nombreComercialPath = '/api/nombre-comercial';
+        this.principioActivoPath = '/api/principios-activos';
+        this.nombreComercialPath = '/api/nombres-comerciales';
 
         //Coneccion a base de datos
         this.conectarDB();
