@@ -9,13 +9,4 @@ node_modules
 /ejemplos
 
 
-models/principio-activo.js
-models/nombre-comercial.js
-
-controllers/nombres-comerciales.js
-controllers/principios-activos.js
-
-/routes/nombre-comercial.js
-/routes/principio-activo.js
-
 
