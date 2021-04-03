@@ -2,8 +2,14 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 
+//MIDDLEWARES
+/* 
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
+const { esAdminRole, tieneElRole } = require('../middlewares/validar-roles');
+ */
+const { validarCampos, validarJWT, esAdminRole, tieneElRole } = require('../middlewares');
+
 
 const { esRolValido, correoExiste, existeUsuarioID } = require('../helpers/validaciones-db');
 
@@ -12,7 +18,7 @@ const { usuariosGet, usuariosPut, usuariosPost, usuariosDelete } = require('../c
 const router = Router();
 
 //Si mandamos 3 o mas middlewares, significa que en el 2 espacio van los middlewares, si van varios, van entre []
- 
+
 router.get('/', usuariosGet);
 
 router.put('/:id', [
@@ -35,9 +41,11 @@ router.post('/', [
 
 router.delete('/:id', [
     validarJWT,
+    //esAdminRole, verifica que el rol sea administrador
+    tieneElRole('MASTER_ROLE', 'ADMIN_ROLE', 'USER_ROLE'),
     check('id', 'No es un ID valido').isMongoId(),
     check('id').custom(existeUsuarioID),
     validarCampos
 ], usuariosDelete);
 
-module.exports = router; 
+module.exports = router;
