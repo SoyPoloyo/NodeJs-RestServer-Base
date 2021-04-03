@@ -1,7 +1,7 @@
 const { response } = require('express');
 const bcryptjs = require('bcryptjs');
 
-const Usuario = require('../models/user');
+const Usuario = require('../models/usuario');
 
 const usuariosGet = async (req, res = response) => {
     //req,query**
@@ -27,7 +27,7 @@ const usuariosGet = async (req, res = response) => {
             .limit(limite) // limita los usuarios mostrados
 
     ])
-
+ 
 
     // obtener nombres - for fun
     const nombres = usuarios.map(arr => {
@@ -86,18 +86,23 @@ const usuariosPost = async (req, res) => {
 
 const usuariosDelete = async (req, res = response) => {
 
-    const { id } = req.params;
- 
     /*
     * Borrarlo fisicamente**
     * const usuario = await Usuario.findByIdAndDelete(id);
     */
 
+    const { id } = req.params;
+ 
     const usuario = await Usuario.findByIdAndUpdate(id, { estado: false });
-    let nombre = usuario.nombre
+
+    //el token del usuario que a borrado a quien*
+    const usuarioAutenticado = req.usuario
+
     res.json({
         msg: 'Usuario desactivado / eliminado',
-        nombre
+        usuarioAutenticado,
+        usuario,
+        
     })
 }
 

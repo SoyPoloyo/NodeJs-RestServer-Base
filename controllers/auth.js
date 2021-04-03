@@ -1,7 +1,7 @@
 const { response } = require("express");
 const bcryptjs = require('bcryptjs');
 
-const Usuario = require('../models/user');
+const Usuario = require('../models/usuario');
 
 const { generarJWT } = require("../helpers/generar-jwt");
 
@@ -36,7 +36,7 @@ const login = async (req, res = response) => {
                 msg: 'El usuario / contraseña no es correcto - password'
             })
         }
-
+ 
         // generar el json web token
         // esto funciona en base a callbacks, generar funcion para cambiarlo a promesas**
 

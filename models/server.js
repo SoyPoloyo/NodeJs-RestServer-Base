@@ -28,7 +28,7 @@ class Server {
     async conectarDB() {
         await dbConnection();
     }
-
+ 
     middlewares() {
         //CORS
         this.app.use(cors());
@@ -40,7 +40,7 @@ class Server {
 
     routes() {
         this.app.use(this.authPath, require('../routes/auth'));
-        this.app.use(this.usuariosPath, require('../routes/users'));
+        this.app.use(this.usuariosPath, require('../routes/usuarios'));
         this.app.use(this.principioActivoPath, require('../routes/principio-activo'));
         this.app.use(this.nombreComercialPath, require('../routes/nombre-comercial'));
     }

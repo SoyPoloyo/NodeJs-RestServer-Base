@@ -10,7 +10,7 @@ node_modules
 
 
 models/principio-activo.js
-models/nombre-comerciale.js
+models/nombre-comercial.js
 
 controllers/nombres-comerciales.js
 controllers/principios-activos.js

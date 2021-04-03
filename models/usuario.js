@@ -34,7 +34,7 @@ const UsuarioSchema = Schema({
         default: false
     }
 
-});
+}); 
 
 //se pueden crear metodos o sobreescribir existentes
 //sobreescribimos el toJSON para que devuelva solo que queremos al mostrar info de forma global
@@ -44,5 +44,5 @@ UsuarioSchema.methods.toJSON = function (params) {
     return usuario
 }
 
-
+ 
 module.exports = model('Usuario', UsuarioSchema);
