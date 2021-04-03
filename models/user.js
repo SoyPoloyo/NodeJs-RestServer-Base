@@ -39,7 +39,8 @@ const UsuarioSchema = Schema({
 //se pueden crear metodos o sobreescribir existentes
 //sobreescribimos el toJSON para que devuelva solo que queremos al mostrar info de forma global
 UsuarioSchema.methods.toJSON = function (params) {
-    const {__v, password, ...usuario} = this.toObject();
+    const {__v, password, _id, ...usuario } = this.toObject();
+    usuario.uid = _id;
     return usuario
 }
 

@@ -8,11 +8,6 @@ node_modules
 
 /ejemplos
 
-models/farmaco.js
-
-controllers/farmacos.js
-
-/routes/farmacos.js
 
 
 

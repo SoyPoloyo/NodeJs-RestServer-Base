@@ -11,7 +11,9 @@ class Server {
         this.port = process.env.PORT;
         //http de las rutas
         this.usuariosPath = '/api/usuarios';
-       // this.farmacosPath = '/api/farmacos';
+        this.authPath = '/api/auth';
+        this.principioActivoPath = '/api/principio-activo';
+        this.nombreComercialPath = '/api/nombre-comercial';
 
         //Coneccion a base de datos
         this.conectarDB();
@@ -37,8 +39,10 @@ class Server {
     }
 
     routes() {
-        this.app.use(this.usuariosPath, require('../routes/users'))
-      // this.app.use(this.farmacosPath, require('../routes/farmacos'))
+        this.app.use(this.authPath, require('../routes/auth'));
+        this.app.use(this.usuariosPath, require('../routes/users'));
+        this.app.use(this.principioActivoPath, require('../routes/principio-activo'));
+        this.app.use(this.nombreComercialPath, require('../routes/nombre-comercial'));
     }
 
     listen() {
