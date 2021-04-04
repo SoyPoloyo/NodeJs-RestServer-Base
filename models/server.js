@@ -9,11 +9,13 @@ class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
+
         //http de las rutas
         this.usuariosPath = '/api/usuarios';
         this.authPath = '/api/auth';
         this.principioActivoPath = '/api/principios-activos';
         this.nombreComercialPath = '/api/nombres-comerciales';
+        
 
         //Coneccion a base de datos
         this.conectarDB();
@@ -36,6 +38,7 @@ class Server {
         this.app.use(express.json());
         //Directorio publico
         this.app.use(express.static('public'));
+       
     }
 
     routes() {
@@ -43,6 +46,8 @@ class Server {
         this.app.use(this.usuariosPath, require('../routes/usuarios'));
         this.app.use(this.principioActivoPath, require('../routes/principio-activo'));
         this.app.use(this.nombreComercialPath, require('../routes/nombre-comercial'));
+        
+       
     }
 
     listen() {

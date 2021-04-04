@@ -22,6 +22,7 @@ const UsuarioSchema = Schema({
     rol: {
         type: String,
         required: true,
+        default: 'USER_ROLE',
         //emun valida que solo acepte estas opciones****
         emun: ['ADMIN_ROLE', 'USER_ROLE']
     },

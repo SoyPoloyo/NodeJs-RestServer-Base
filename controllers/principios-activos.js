@@ -12,6 +12,7 @@ const principiosActivosGet = async (req = request, res = response) => {
         principioActivo
     });
 
+    
 }
 
 const principiosActivosPost = async (req, res) => {
@@ -27,6 +28,7 @@ const principiosActivosPost = async (req, res) => {
         msg: 'Principio activo creado?',
         principioActivo
     })
+
 }
 
 
