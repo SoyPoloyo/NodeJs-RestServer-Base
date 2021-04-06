@@ -1,6 +1,8 @@
-const Role = require('../models/role');
-const Usuario = require('../models/usuario'); 
+const { Categoria, Role, Usuario, Producto } = require('../models');
 
+/* 
+* USUARIOS
+ */
 const esRolValido = async (rol = '') => {
     const existeRol = await Role.findOne({ rol });
     if (!existeRol) {
@@ -24,11 +26,37 @@ const existeUsuarioID = async (id) => {
     }
 }
 
+/* 
+* CATEGORIAS
+ */
+const existeCategoriaID = async (id) => {
+
+    const existeCategoria = await Categoria.findById(id);
+    if (!existeCategoria) {
+        throw new Error(`El ID '${id}' no existe`)
+    }
+}
+
+
+/* 
+* PRODUCTOS
+ */
+const existeProductoID = async (id) => {
+
+    const existeProducto = await Producto.findById(id);
+    if (!existeProducto) {
+        throw new Error(`El ID '${id}' no existe`)
+    }
+}
+
 //Aqui realizaria las validaciones de la informacion de los farmacos que llegaria a mi ruta, antes de pasar a mi controlador
 // si la informacion no viene como se requiere se va devolver inmediatamente sin llegar al controlador
 
 module.exports = {
     esRolValido,
     correoExiste,
-    existeUsuarioID
+    existeUsuarioID,
+    existeCategoriaID,
+    existeProductoID
+    
 }
