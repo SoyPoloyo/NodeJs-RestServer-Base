@@ -12,9 +12,6 @@ const {actualizarProducto,borrarProducto,crearProducto,obtenerProducto,obtenerPr
 const router = Router();
 
 
-
-
-
 // obtener todas las categorias - public
 router.get('/', obtenerProductos);
 
