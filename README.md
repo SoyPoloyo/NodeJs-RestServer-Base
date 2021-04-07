@@ -14,4 +14,5 @@ express-validator: para validaciones;
 jsonwebtoken: para generar los tokens;
 express-fileupload: para subir archivos;
 uui: otorgar identificadores unicos, aqui lo usaremos en las imagenes
+cloudinary: para subir los archivos o imagenes
 ```

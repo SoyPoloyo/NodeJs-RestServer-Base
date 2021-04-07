@@ -8,7 +8,14 @@ node_modules
 
 /ejemplos
 
+/controllers/nombres-comerciales.js
+/controllers/principios-activos.js
 
+/models/nombre-comercial.js
+/models/principio-activo.js
+
+/routes/principios-activos.js
+/routes/nombres-comerciales.js
 
 /uploads/productos/*
 /uploads/usuarios/*
