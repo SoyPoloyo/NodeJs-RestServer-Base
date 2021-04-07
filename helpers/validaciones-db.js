@@ -49,6 +49,19 @@ const existeProductoID = async (id) => {
     }
 }
 
+/* 
+* VALIDAR COLECCIONES PERMITIDAS
+ */
+const coleccionesPermitidas = async (coleccion = '', colecciones = []) => {
+
+    const incluida = colecciones.includes(coleccion);
+    if (!incluida) {
+        throw new Error(`La coleccion ${coleccion} no es permitida -  ${colecciones}`)
+    }
+
+    return true
+}
+
 //Aqui realizaria las validaciones de la informacion de los farmacos que llegaria a mi ruta, antes de pasar a mi controlador
 // si la informacion no viene como se requiere se va devolver inmediatamente sin llegar al controlador
 
@@ -57,6 +70,7 @@ module.exports = {
     correoExiste,
     existeUsuarioID,
     existeCategoriaID,
-    existeProductoID
-    
+    existeProductoID,
+    coleccionesPermitidas
+
 }

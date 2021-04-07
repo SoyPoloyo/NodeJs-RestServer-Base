@@ -17,4 +17,7 @@ node_modules
 /routes/principios-activos.js
 /routes/nombres-comerciales.js
 
+/uploads/productos/*
+/uploads/usuarios/*
+
 
