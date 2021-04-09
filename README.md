@@ -1,8 +1,8 @@
 # Base Rest-Server
-Machote de servidor en nodeJs
+Servidor en NodeJs con peticiones y sockets
 <hr>
 
-### Que hacen las dependencias
+### Que hacen las dependencias instaladas
 
 ```
 dotenv: para nuestras variables de entorno;
@@ -15,4 +15,5 @@ jsonwebtoken: para generar los tokens;
 express-fileupload: para subir archivos;
 uui: otorgar identificadores unicos, aqui lo usaremos en las imagenes
 cloudinary: para subir los archivos o imagenes
+scoket.io: para la creacion y el manejo de sockets
 ```

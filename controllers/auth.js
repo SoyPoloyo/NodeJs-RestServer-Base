@@ -18,14 +18,14 @@ const login = async (req, res = response) => {
         //Verificiar si el email existe
         if (!usuario) {
             return res.status(400).json({
-                msg: 'El usuario / contraseña no es correcto - correo*'
+                msg: 'El usuario / contraseña no es correcto'
             })
         }
 
         //verificiar si el usuario esta activo
         if (!usuario.estado) {
             return res.status(400).json({
-                msg: 'El usuario / contraseña no es correcto - estado:false*'
+                msg: 'El usuario / contraseña no es correcto'
             })
         }
 
@@ -33,7 +33,7 @@ const login = async (req, res = response) => {
         const validPassword = bcryptjs.compareSync(password, usuario.password);
         if (!validPassword) {
             return res.status(400).json({
-                msg: 'El usuario / contraseña no es correcto - password'
+                msg: 'El usuario / contraseña no es correcto'
             })
         }
 
@@ -43,8 +43,7 @@ const login = async (req, res = response) => {
         const token = await generarJWT(usuario.id)
 
         res.json({
-            msg: 'Usuario que se acaba de logear',
-            usuario,
+
             token
 
         })
@@ -81,7 +80,7 @@ const googleSignin = async (req, res = response) => {
 
             usuario = new Usuario(data);
             await usuario.save();
-            
+
         }
 
         //si el usuario tiene el estado en false
@@ -98,7 +97,7 @@ const googleSignin = async (req, res = response) => {
 
         res.json({
             msg: 'Autenticado correctamente con google',
-            usuario,
+            //usuario,
             token
         })
 
@@ -110,7 +109,20 @@ const googleSignin = async (req, res = response) => {
 
 }
 
+const renovarToken = async (req, res = response) => { 
+
+    const {usuario} = req;
+
+    const token = await generarJWT(usuario.id)
+
+    res.json({
+        usuario,
+        token
+    })
+}
+
 module.exports = {
     login,
-    googleSignin
+    googleSignin,
+    renovarToken
 }

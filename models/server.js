@@ -1,8 +1,10 @@
 express = require('express');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
+const { createServer } = require('http');
 
 const { dbConnection } = require('../database/config');
+const { socketController } = require('../sockets/controller');
 
 //clase para levantar el server
 class Server {
@@ -10,6 +12,8 @@ class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
+        this.server = createServer(this.app);
+        this.io = require('socket.io')(this.server)
 
         //http de las rutas
         this.paths = {
@@ -33,7 +37,8 @@ class Server {
         //Llamado a rutas de mi app
         this.routes();
 
-        //
+        //Eventos de los sockets
+        this.sockets();
     }
 
     async conectarDB() {
@@ -51,7 +56,7 @@ class Server {
         this.app.use(fileUpload({
             useTempFiles: true,
             tempFileDir: '/tmp/',
-            createParentPath:true // habilita que se cree la carpeta si no existe
+            createParentPath: true // habilita que se cree la carpeta si no existe
         }));
 
     }
@@ -69,8 +74,14 @@ class Server {
 
     }
 
+    sockets() {
+    
+
+        this.io.on("connection", socketController);
+    }
+
     listen() {
-        this.app.listen(this.port, () => {
+        this.server.listen(this.port, () => {
             console.log(`Servidor arriba, puerto: ${this.port}`);
         })
     }
