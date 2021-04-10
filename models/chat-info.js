@@ -12,7 +12,7 @@ class Mensaje {
 
 }
 
-class ChatMensajes {
+class ChatInfo {
 
     constructor() {
         this.mensajes = [];
@@ -45,4 +45,4 @@ class ChatMensajes {
 
 }
 
-module.exports = ChatMensajes
+module.exports = ChatInfo

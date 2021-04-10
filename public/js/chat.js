@@ -30,10 +30,10 @@ const validarJWT = async () => {
         headers: { 'u-token': token }
     });
 
-    const { usuario: userDB, token:tokenDB } = await resp.json();
-    
+    const { usuario: userDB, token: tokenDB } = await resp.json();
+
     //renovamos el token
-    localStorage.setItem('utkn', token)
+    localStorage.setItem('utkn', tokenDB)
 
     usuario = userDB;
 
@@ -43,10 +43,10 @@ const validarJWT = async () => {
 
 }
 
-const conectarSocket = async() => {
+const conectarSocket = async () => {
 
     socket = io({
-        'extraHeaders':{
+        'extraHeaders': {
             'u-token': localStorage.getItem('utkn')
         }
     });
@@ -60,20 +60,72 @@ const conectarSocket = async() => {
         console.log('Sockets offline');
     });
 
-    socket.on('recibir-mensajes', () => {
-        //porhacer
-    });
+    socket.on('recibir-mensajes', dibujarmensajes);
 
-    socket.on('usuarios-activos', () => {
-        //porhacer
-    });
+    socket.on('usuarios-activos', dibujarUsuarios);
 
-    socket.on('mensaje-privado', () => {
-        //porhacer
-    });
+    socket.on('mensaje-privado', dibujarmensajesPrivados);
 
 
 }
+
+const dibujarUsuarios = (usuarios = []) => {
+    let usersHtml = '';
+    usuarios.forEach(({ nombre, uid }) => {
+        usersHtml += `
+        <li>
+        <p> 
+        <h5 class="text-success">${nombre} </h5>
+        <span class="fs-6 text-muted">${uid}</span>
+        </p>
+        </li>
+        `
+    })
+    ulUsuarios.innerHTML = usersHtml
+}
+
+const dibujarmensajes = (mensajes = []) => {
+    let mensajesHtml = '';
+    mensajes.forEach(({ nombre, mensaje, uid }) => {
+        mensajesHtml += `
+        <li>
+        <p> 
+        <span class="text-primary">${nombre}: </span>
+        <span class="">${mensaje}</span>
+        </p>
+        </li>
+        `
+    })
+    ulMensajes.innerHTML = mensajesHtml
+}
+
+const dibujarmensajesPrivados = (privados) => {
+    
+
+    ulMensajes.innerHTML += `
+        <li>
+        <p> 
+        <span class="text-primary">${privados.de}: </span>
+        <span class="">${privados.mensaje}</span>
+        </p>
+        </li>
+        `
+
+}
+
+txtMensaje.addEventListener('keyup', ({ keyCode }) => {
+
+    const mensaje = txtMensaje.value;
+    const uid = txtUid.value;
+
+    if (keyCode !== 13) { return; }
+    if (mensaje.length === 0) { return; }
+
+
+    socket.emit('enviar-mensaje', { mensaje, uid })
+
+    txtMensaje.value = '';
+})
 
 const main = async () => {
 
